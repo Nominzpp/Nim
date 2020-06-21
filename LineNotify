@@ -1,0 +1,28 @@
+function dailyEventMessage() {
+  var googleCalendarId = "f9ghhj925v8v6q1q0hv1nv9f0k@group.calendar.google.com";
+  
+  var calendar = CalendarApp.getCalendarById("f9ghhj925v8v6q1q0hv1nv9f0k@group.calendar.google.com");
+  var today = new Date();
+  var dailyEventList = calendar.getEventsForDay(today);
+  
+  //Logger.log(dailyEventList);
+  
+  var message = "";
+  
+  for (var i = 0; i < dailyEventList.length; i++) {
+  
+    var eventTitle = "Title: " + "\n" + dailyEventList[i].getTitle();
+    var eventTime = "Start Time: " + "\n" + dailyEventList[i].getStartTime().toTimeString().slice(0,8);
+    var eventDescribtion = "Description: " + "\n" + dailyEventList[i].getDescription();
+    
+    message += "\n" + eventTitle + "\n" + eventTime + "\n" + eventDescribtion;
+    
+  }
+  
+  if (message === "") {
+    return;
+  }
+  
+  Logger.log(message);
+  
+}
